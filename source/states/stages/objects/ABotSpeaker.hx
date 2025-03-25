@@ -49,7 +49,7 @@ class ABotSpeaker extends FlxSpriteGroup
 			volumes.push(0.0);
 			vizX += VIZ_POS_X[i-1];
 			vizY += VIZ_POS_Y[i-1];
-			var viz:FlxSprite = new FlxSprite(vizX + 140, vizY + 74);
+			var viz:FlxSprite = new FlxSprite(FlxG.sound.music);
 			viz.frames = vizFrames;
 			viz.animation.addByPrefix('VIZ', 'viz$i', 0);
 			viz.animation.play('VIZ', true);
