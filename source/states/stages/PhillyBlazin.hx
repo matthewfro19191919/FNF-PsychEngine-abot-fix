@@ -23,7 +23,7 @@ class PhillyBlazin extends BaseStage
 	
 	var lightningTimer:Float = 3.0;
 
-	var abot:ABotSpeaker;
+	var abot:ABotVis;
 
 	override function create()
 	{
@@ -75,7 +75,7 @@ class PhillyBlazin extends BaseStage
 			add(additionalLighten);
 		}
 
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
+		abot = new ABotVis(gfGroup.x, gfGroup.y + 550);
 		add(abot);
 		
 		if(ClientPrefs.data.shaders)
