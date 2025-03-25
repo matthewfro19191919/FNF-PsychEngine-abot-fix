@@ -44,7 +44,7 @@ class PhillyStreets extends BaseStage
 	var spraycanPile:BGSprite;
 
 	var darkenable:Array<FlxSprite> = [];
-	var abot:ABotSpeaker;
+	var abot:ABotVis;
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality)
@@ -131,7 +131,7 @@ class PhillyStreets extends BaseStage
 			darkenable.push(picoFade);
 		}
 
-		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
+		abot = new ABotVis(gfGroup.x, gfGroup.y + 550);
 		updateABotEye(true);
 		add(abot);
 		
