@@ -1,4 +1,4 @@
-package funkin.audio.visualize;
+package stages.objects;
 
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
