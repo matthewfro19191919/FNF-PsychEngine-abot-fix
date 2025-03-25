@@ -121,7 +121,7 @@ class ABotSpeaker extends FlxSpriteGroup
 	public function initAnalyzer()
 	{
 		@:privateAccess
-		analyzer = new SpectralAnalyzer(FlxG.sound.music);
+		analyzer = new SpectralAnalyzer(lime.media.AudioSource);
 	
 		#if desktop
 		// On desktop it uses FFT stuff that isn't as optimized as the direct browser stuff we use on HTML5
