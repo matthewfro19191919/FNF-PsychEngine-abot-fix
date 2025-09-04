@@ -6,10 +6,7 @@ import shaders.RainShader;
 import flixel.addons.display.FlxTiledSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
-import substates.GameOverSubstate;
 import states.stages.objects.*;
-
-import objects.Note;
 
 import cutscenes.CutsceneHandler;
 
@@ -44,7 +41,7 @@ class PhillyStreets extends BaseStage
 	var spraycanPile:BGSprite;
 
 	var darkenable:Array<FlxSprite> = [];
-	var abot:ABotVis;
+	var abot:ABotSpeaker;
 	override function create()
 	{
 		if(!ClientPrefs.data.lowQuality)
@@ -131,7 +128,7 @@ class PhillyStreets extends BaseStage
 			darkenable.push(picoFade);
 		}
 
-		abot = new ABotVis(gfGroup.x, gfGroup.y + 550);
+		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
 		updateABotEye(true);
 		add(abot);
 		
@@ -184,7 +181,7 @@ class PhillyStreets extends BaseStage
 		}
 
 		spraycanPile = new BGSprite('SpraycanPile', 920, 1045, 1, 1);
-		precache();
+		precacheWeekend();
 		add(spraycanPile);
 		darkenable.push(spraycanPile);
 
@@ -215,9 +212,12 @@ class PhillyStreets extends BaseStage
 		{
 			#if VIDEOS_ALLOWED
 			game.startVideo(videoName);
-			game.videoCutscene.finishCallback = game.videoCutscene.onSkip = function()
+			game.videoCutscene.finishCallback = function()
 			{
 				videoEnded = true;
+				#if (hxCodec > "3.0.0" && ios)
+				game.videoCutscene.dispose();
+				#end
 				game.videoCutscene = null;
 				videoCutscene();
 			};
@@ -245,7 +245,7 @@ class PhillyStreets extends BaseStage
 	var cutsceneHandler:CutsceneHandler;
 	function darnellCutscene()
 	{
-		moveCamera(false);
+		game.moveCamera(false);
 		camFollow.x += 250;
 		FlxG.camera.snapToTarget();
 		FlxG.camera.zoom = 1.3;
@@ -295,7 +295,7 @@ class PhillyStreets extends BaseStage
 		});
 		cutsceneHandler.timer(cutsceneDelay, function() //zoom out to show off everything
 		{
-			moveCamera(true);
+			game.moveCamera(true);
 			camFollow.x += 100;
 			FlxTween.tween(FlxG.camera.scroll, {x: camFollow.x + 100 - FlxG.width/2, y: camFollow.y - FlxG.height/2}, 2.5, {ease: FlxEase.quadInOut});
 			FlxTween.tween(FlxG.camera, {zoom: 0.66}, 2.5, {ease: FlxEase.quadInOut});
@@ -429,7 +429,7 @@ class PhillyStreets extends BaseStage
 	var lightCanSnd:FlxSound;
 	var kickCanSnd:FlxSound;
 	var kneeCanSnd:FlxSound;
-	function precache()
+	function precacheWeekend()
 	{
 		var didCreateCan = false;
 		function createCan()

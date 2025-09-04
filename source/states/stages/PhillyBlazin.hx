@@ -6,9 +6,7 @@ import shaders.RainShader;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.display.FlxTiledSprite;
 
-import substates.GameOverSubstate;
 import states.stages.objects.*;
-import objects.Note;
 
 class PhillyBlazin extends BaseStage
 {
@@ -23,7 +21,7 @@ class PhillyBlazin extends BaseStage
 	
 	var lightningTimer:Float = 3.0;
 
-	var abot:ABotVis;
+	var abot:ABotSpeaker;
 
 	override function create()
 	{
@@ -75,7 +73,7 @@ class PhillyBlazin extends BaseStage
 			add(additionalLighten);
 		}
 
-		abot = new ABotVis(gfGroup.x, gfGroup.y + 550);
+		abot = new ABotSpeaker(gfGroup.x, gfGroup.y + 550);
 		add(abot);
 		
 		if(ClientPrefs.data.shaders)
@@ -89,7 +87,7 @@ class PhillyBlazin extends BaseStage
 		GameOverSubstate.deathDelay = 0.15;
 
 		setDefaultGF('nene');
-		precache();
+		precacheWeekend();
 		
 		if (isStoryMode)
 		{
@@ -163,7 +161,7 @@ class PhillyBlazin extends BaseStage
 		FlxG.camera.setFilters([new ShaderFilter(rainShader)]);
 	}
 
-	function precache()
+	function precacheWeekend()
 	{
 		for (i in 1...4)
 		{
