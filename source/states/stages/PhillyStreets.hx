@@ -10,6 +10,8 @@ import states.stages.objects.*;
 
 import cutscenes.CutsceneHandler;
 
+import objects.*;
+
 enum NeneState
 {
 	STATE_DEFAULT;
