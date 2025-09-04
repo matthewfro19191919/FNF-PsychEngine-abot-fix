@@ -1,4 +1,4 @@
-package objects;
+package states.stages.objects;
 
 #if funkin.vis
 import funkin.vis.dsp.SpectralAnalyzer;
