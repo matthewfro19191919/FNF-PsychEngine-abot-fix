@@ -8,6 +8,8 @@ import flixel.addons.display.FlxTiledSprite;
 
 import states.stages.objects.*;
 
+import objects.*;
+
 class PhillyBlazin extends BaseStage
 {
 	var rainShader:RainShader;
